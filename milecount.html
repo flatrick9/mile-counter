@@ -1,0 +1,73 @@
+<head>
+    <title>Mile Count</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="logo"></div>
+        <h1 class="title">50 Day walking challenge!</h1>
+        <div class="subtitle">Mile Counter</div>
+        <div class="details">
+          <p>
+            Take the <strong>walk 50 miles in 50 days challenge</strong> to be entered to win a $100 gift card to Feet First, a Valpak of Tampa Bay advertiser. 
+            We have several charity walks coming up, so now's the time to get ready. Lace up those sneakers, grab a buddy and take a walk! You can walk on breaks here at work or anywhere on your free time - all walks count!
+            Don't forget we have <a href="http://www.insidevalpak.com/home-office/human-resources/health-safety-security/" target="_blank">walking paths for both campuses on INVP</a> (requires INVP login)
+            
+            <p>When you have completed your <strong>50 miles,</strong> contact <strong>Tami Orr</strong> by Nov 18th at ext 3535 to put your name in the drawing on Nov. 20th.</p>
+
+
+            
+          </p>
+
+        </div>
+        {{> leaderboard}}
+    </div>
+</body>
+<template name="leaderboard">
+    
+    {{#if selectedName}}
+    <div class="details">
+        <div class="name">{{selectedName}}</div>
+        <hr>
+        <div class="row">
+          <button class="inc inc-mile">Add a mile</button>
+          <button class="inc dec-mile">Remove a mile</button>
+        </div>
+        <hr>
+        <div class="row">  
+          <button class="inc inc-half">Add a half mile</button>
+          <button class="inc dec-half">Remove a half mile</button>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="gray-box">
+            <ul>
+              <li>To remove any accidentally entered miles, click the "Remove a mile or half mile" buttons the requisite number of times.</li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="message">Click your name to add miles</div>
+    <div class="details">
+        <div class="subtitle add-form">If your name or nickname isn't on the list, add it below:</div>
+        <input class="player-name" type="text" placeholder="Your Name or Nickname">
+        <button class="inc add-player">Add me</button>
+    </div>
+    {{/if}}
+    <ol class="leaderboard">
+        {{#each players}} {{> player}} {{/each}}
+    </ol>
+    
+</template>
+<template name="player {{selected}}">
+    <li class="player">
+      {{ #if playerwins 50}}
+        <span class="fa fa-trophy"></span>
+      {{/if}}  
+      <span class="name">{{name}}</span>
+      <span class="score">{{score}}</span>
+    </li>
+</template>
